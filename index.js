@@ -5,8 +5,6 @@ const courseBtn = document.querySelectorAll('.course-btn');
 const tableClear = document.querySelector('#table-clear');
 
 
-    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    if (cartItems) {
         cartItems.forEach(item => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -25,9 +23,7 @@ const tableClear = document.querySelector('#table-clear');
                 e.currentTarget.parentElement.remove();
             });
         });
-    }
-;
-
+    
 courseBtn.forEach(btn => {
     btn.addEventListener('click', e => {
         const img = e.target.parentElement.parentElement.children[0].innerHTML;
