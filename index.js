@@ -4,18 +4,7 @@ const table = document.querySelector('#table-body');
 const courseBtn = document.querySelectorAll('.course-btn');
 const tableClear = document.querySelector('#table-clear');
 
-// Función para guardar los datos en localStorage
-const saveToLocalStorage = () => {
-    localStorage.setItem('cartItems', JSON.stringify([...table.children].map(row => ({
-        img: row.children[0].innerHTML,
-        name: row.children[1].innerHTML,
-        price: row.children[2].innerHTML,
-        quantity: row.children[3].innerHTML
-    }))));
-};
 
-// Función para cargar los datos desde localStorage
-const loadFromLocalStorage = () => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     if (cartItems) {
         cartItems.forEach(item => {
@@ -34,19 +23,16 @@ const loadFromLocalStorage = () => {
             table.append(row);
             row.children[4].addEventListener('click', e => {
                 e.currentTarget.parentElement.remove();
-                saveToLocalStorage(); // Actualizar localStorage al eliminar un elemento
             });
         });
     }
-};
-
-// Cargar los datos guardados al cargar la página
-loadFromLocalStorage();
+;
 
 courseBtn.forEach(btn => {
     btn.addEventListener('click', e => {
         const img = e.target.parentElement.parentElement.children[0].innerHTML;
         const name = e.target.parentElement.children[0].innerHTML;
+        
         const exist = [...table.children].find(element => element.children[1].innerHTML === name);
         if (exist) {
             exist.children[3].innerHTML = Number(exist.children[3].innerHTML) + 1;
@@ -65,11 +51,10 @@ courseBtn.forEach(btn => {
             `;
             row.children[4].addEventListener('click', e => {
                 e.currentTarget.parentElement.remove();
-                saveToLocalStorage(); 
             });
+            
             table.append(row);
         }
-        saveToLocalStorage();
     });
 });
 
@@ -79,5 +64,4 @@ shopIcon.addEventListener('click', e => {
 
 tableClear.addEventListener('click', e => {
     table.innerHTML = '';
-    localStorage.removeItem('cartItems'); 
 });
