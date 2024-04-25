@@ -4,26 +4,6 @@ const table = document.querySelector('#table-body');
 const courseBtn = document.querySelectorAll('.course-btn');
 const tableClear = document.querySelector('#table-clear');
 
-
-        cartItems.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${item.img}</td>
-                <td>${item.name}</td>
-                <td>${item.price}</td>
-                <td>${item.quantity}</td>
-                <td>
-                    <svg class="delete-btn" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                    </svg>
-                </td>
-            `;
-            table.append(row);
-            row.children[4].addEventListener('click', e => {
-                e.currentTarget.parentElement.remove();
-            });
-        });
-    
 courseBtn.forEach(btn => {
     btn.addEventListener('click', e => {
         const img = e.target.parentElement.parentElement.children[0].innerHTML;
@@ -58,6 +38,6 @@ shopIcon.addEventListener('click', e => {
     cart.classList.toggle('show-cart');
 });
 
-tableClear.addEventListener('click', e => {
+tableClear.addEventListener('click', e =>{
     table.innerHTML = '';
 });
